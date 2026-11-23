@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sri Subrahmanya Swamy Temple, Payyanur — Renovation Masterplan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F4EF;--card:#FFFFFF;--ink:#1F2421;--mute:#5B625D;--line:#DDDBD2;--stone:#8A3B22;--pond:#1E5B57;--brass:#9A6B1F;--tint:#EDEBE3;
+--c1:#1E5B57;--c2:#5E8A5A;--c3:#8A3B22;--c4:#9A6B1F;--c5:#3F6A9A;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171A18;--card:#202522;--ink:#EDEBE4;--mute:#A4ABA5;--line:#343A36;--stone:#E08B6A;--pond:#6FC0B8;--brass:#D9A857;--tint:#262C28;--c1:#4FA79F;--c2:#86B382;--c3:#D0704D;--c4:#C99647;--c5:#7FA6D6}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.8 "Manjari",system-ui,sans-serif;text-wrap:pretty}
+body[data-lang=en]{line-height:1.6}
+h1,h2,h3{font-weight:700;line-height:1.35;margin:0;text-wrap:balance}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px;border-radius:6px}
+header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+.brand{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button,.seg button{border:0;background:none;padding:6px 14px;font-size:14px;color:var(--mute)}
+.lang button[aria-pressed=true],.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.hero{padding:44px 0 28px}
+.hero h1{font-size:clamp(28px,6vw,44px)}
+.hero p.lede{color:var(--mute);margin:14px 0 0;font-size:18px}
+.total{margin-top:28px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 28px}
+.total .big{font-size:clamp(56px,13vw,96px);line-height:1.1;font-weight:700;color:var(--stone);letter-spacing:-.02em}
+.total .big small{font-size:.38em;margin-left:6px;color:var(--mute);font-weight:400}
+.total .meta{color:var(--mute);font-size:15px;flex:1 1 280px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}.scenwrap{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}.seglabel{color:var(--mute);font-size:16px}.walk .btn{margin:14px 0 22px;padding:8px 16px;font-size:14px}
+.seg button{padding:8px 16px;font-size:14px;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.bar-stack{display:flex;height:16px;border-radius:8px;overflow:hidden;margin-top:26px;gap:2px}
+.bar-stack i{display:block;height:100%;transition:flex-grow .35s}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px;color:var(--mute)}
+.legend a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.legend a:hover{color:var(--ink)}
+.legend b{width:10px;height:10px;border-radius:3px;display:inline-block}
+.walk{padding:12px 0 8px}
+.walk h2{font-size:24px}
+.walk .sub{color:var(--mute);margin:6px 0 0}
+ol.path{list-style:none;margin:0;padding:0;position:relative}
+ol.path::before{content:"";position:absolute;left:19px;top:20px;bottom:20px;width:3px;border-radius:3px;background:linear-gradient(var(--c1),var(--c2),var(--c3),var(--c4),var(--c5))}
+.stage{position:relative;padding-left:60px;margin-bottom:22px}
+.node{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:17px;border:4px solid var(--bg)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.card>button.head{all:unset;box-sizing:border-box;display:flex;width:100%;justify-content:space-between;align-items:flex-start;gap:14px;padding:18px 20px;cursor:pointer}
+.card>button.head:focus-visible{outline:3px solid var(--brass);outline-offset:-3px}
+.head h3{font-size:21px}
+.head .where{color:var(--mute);font-size:14px;margin-top:2px}
+.head .amt{text-align:right;flex:none}
+.amt strong{font-size:26px;font-weight:700;display:block;line-height:1.2}
+.amt span{font-size:12px;color:var(--mute)}
+.chev{display:inline-block;transition:transform .2s;margin-left:4px}
+.stage[data-open=true] .chev{transform:rotate(180deg)}
+.items{display:none;border-top:1px solid var(--line)}
+.stage[data-open=true] .items{display:block}
+.item{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line)}.ibox{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--tint);flex:none}.ic{width:22px;height:22px}.body{flex:1;min-width:0}
+.item:last-child{border-bottom:0}
+.item .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.item h4{margin:0;font-size:16px;font-weight:600}
+.item .v{font-weight:700;font-size:16px;white-space:nowrap;color:var(--stone)}
+.item p{margin:4px 0 0;color:var(--mute);font-size:15px}
+.item .share{height:5px;background:var(--tint);border-radius:3px;margin-top:10px}
+.item .share i{display:block;height:100%;border-radius:3px}
+.tag{display:inline-block;margin-top:8px;font-size:13px;padding:2px 10px;border-radius:999px;background:var(--tint);color:var(--mute)}
+.about{margin:36px 0 0;padding:22px;border:1px dashed var(--line);border-radius:16px}
+.about h2{font-size:21px}
+.about p{margin:8px 0 0;color:var(--mute)}
+.about ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.about li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;font-size:15px}
+.about li span:last-child{color:var(--mute)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;font-weight:500;font-size:15px;text-decoration:none}
+.btn.alt{background:none;color:var(--ink);border-color:var(--line)}
+footer{padding:32px 0 48px;color:var(--mute);font-size:13px}
+.toast{min-height:20px;font-size:14px;color:var(--pond);margin-top:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:520px){.stage{padding-left:52px}.node{width:34px;height:34px;font-size:15px}ol.path::before{left:16px}.card>button.head{padding:16px}.item{padding:14px 16px}}
+
+.btn.play{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 26px;font-size:18px;border-radius:999px;background:var(--stone);border-color:var(--stone);color:#fff}
+.btn.play .ic{width:22px;height:22px;fill:currentColor}
+#cine{position:fixed;inset:0;z-index:50;background:#0b0d0c;color:#fff;display:none;overflow:hidden;user-select:none;-webkit-user-select:none}
+#cine.open{display:block}
+.sc{position:absolute;inset:0;opacity:0;transition:opacity .9s;pointer-events:none}
+.sc.on{opacity:1}
+.sc .bg{position:absolute;inset:-4%;background-size:cover;background-position:center}
+.sc .bg.kb{animation:kb var(--d,8s) ease-out forwards}
+.paused .bg{animation-play-state:paused}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.sc::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.4) 60%,rgba(0,0,0,.1)),linear-gradient(0deg,rgba(0,0,0,.7),transparent 40%)}
+.sc .ghost{position:absolute;right:6%;top:10%;width:34vmin;height:34vmin;opacity:.1}
+.sc .ghost .ic{width:100%;height:100%;stroke-width:.8}
+.sc .in{position:absolute;z-index:2;left:max(6vw,24px);right:max(6vw,24px);top:0;bottom:130px;display:flex;flex-direction:column;justify-content:center;gap:26px;max-width:920px}
+.sc .hd{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.sc h2{font-size:clamp(32px,6.5vw,72px);line-height:1.25}
+.sc .kick,.sc .where{margin:0;font-size:clamp(16px,2.1vw,24px);opacity:.88}
+.sc .tot{font-size:clamp(44px,9vw,104px);font-weight:700;line-height:1.1}
+.num{display:inline-grid;place-items:center;width:clamp(44px,6vw,64px);aspect-ratio:1;border-radius:50%;font-weight:700;font-size:clamp(20px,3vw,30px);flex:none}
+.sc ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.sc li{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:14px 18px}
+.sc li>div{flex:1;min-width:0}
+.sc li b{font-size:clamp(18px,2.5vw,28px)}
+.sc li p{margin:2px 0 0;font-size:clamp(14px,1.7vw,19px);opacity:.82}
+.sc li .v{font-weight:700;font-size:clamp(18px,2.4vw,28px);white-space:nowrap}
+.sc .ibox{background:rgba(255,255,255,.16);color:#fff}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.show{opacity:1;transform:none}
+.ctl{position:absolute;z-index:5;left:0;right:0;bottom:0;padding:0 max(4vw,16px) calc(16px + env(safe-area-inset-bottom,0px));transition:opacity .4s}
+.idle .ctl{opacity:0}.idle{cursor:none}
+.segs{display:flex;gap:6px;margin-bottom:12px}
+.segs i{flex:1;height:5px;background:rgba(255,255,255,.28);border-radius:3px;overflow:hidden;cursor:pointer}
+.segs b{display:block;height:100%;width:0;background:#fff}
+.crow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.crow .sp{flex:1}
+.cb{height:44px;min-width:44px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.4);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;font-size:14px}
+.cb .ic{width:20px;height:20px}
+@media (max-width:600px){.cb span{display:none}.sc .in{bottom:150px}}
+@media (prefers-reduced-motion:reduce){.sc .bg{animation:none!important}}
+</style>
+</head>
+<body data-lang="ml">
+<header class="bar"><div class="wrap">
+  <span class="brand" id="brand"></span>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-l="ml" aria-pressed="true">മലയാളം</button>
+    <button type="button" data-l="en" aria-pressed="false">English</button>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 id="title"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="total">
+      <div class="big" id="total"></div>
+      <div class="meta" id="totalMeta"></div>
+    </div>
+    
+    <button class="btn play" id="playBtn" type="button"></button>
+    <div class="bar-stack" id="stack" aria-hidden="true"></div>
+    <nav class="legend" id="legend"></nav>
+  </section>
+
+  <section class="walk">
+    <h2 id="walkH"></h2>
+    <p class="sub" id="walkSub"></p>
+    <button class="btn alt" id="toggleAll" type="button"></button>
+    <ol class="path" id="path"></ol>
+  </section>
+
+  <section class="about">
+    <h2 id="aboutH"></h2>
+    <p id="aboutP"></p>
+    <ul id="aboutL"></ul>
+    <div class="actions">
+      <a class="btn" id="wa" target="_blank" rel="noopener"></a>
+      <button class="btn alt" id="copy" type="button"></button>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+  </section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script>
+(function(){
+var lang='ml',open={1:true,2:true,3:true,4:true};
+// Amounts in lakh (100 lakh = 1 crore). Gopuram is a range: 300–400.
+var S=[
+{n:1,c:'--c1',t:{ml:'ചിറ',en:'The Chira'},w:{ml:'ക്ഷേത്രക്കുളം',en:'Temple pond'},items:[
+ {t:{ml:'ചിറ നവീകരണം',en:'Chira renovation'},d:{ml:'ചിറയുടെ സമഗ്ര നവീകരണം.',en:'Full renovation of the temple pond.'},a:100}]},
+{n:2,c:'--c2',t:{ml:'ഇന്റർലോക്ക് പാതയും നടപന്തലും',en:'Pathway and nadapanthal'},w:{ml:'ചിറ മുതൽ ക്ഷേത്രം വരെ',en:'From the Chira to the temple'},items:[
+ {t:{ml:'ഇന്റർലോക്ക് പാതയും ഉദ്യാനവും',en:'Interlock paving and garden'},d:{ml:'ക്ഷേത്രം മുതൽ ചിറ വരെയുള്ള സ്ഥലം മുഴുവൻ ഇന്റർലോക്ക്; അതിനുള്ളിൽ ഒരു ഉദ്യാനം.',en:'The whole stretch between temple and Chira is paved in interlock, with a garden inside it.'},a:50},
+ {t:{ml:'300 മീറ്റർ നടപന്തൽ',en:'300 m nadapanthal'},d:{ml:'ഇപ്പോഴുള്ള മണ്ഡപം പൊളിച്ചുനീക്കി ചിറ വരെ 300 മീറ്റർ നടപന്തൽ.',en:'The existing mandapam is cleared and a 300 m covered walkway runs up to the Chira.'},a:50}]},
+{n:3,c:'--c3',t:{ml:'ഗോപുരം',en:'The Gopuram'},w:{ml:'മതിലിനകത്തേക്കുള്ള പ്രവേശനം',en:'Entry into the compound wall'},items:[
+ {t:{ml:'പ്രവേശന ഗോപുരം',en:'Entrance Gopuram'},d:{ml:'ഉള്ളിൽ 5–6 മുറികൾ. സാധ്യമെങ്കിൽ ഒരു വലിയ സുബ്രഹ്മണ്യ രൂപവും.',en:'With 5–6 rooms inside, and a large Subrahmanya figure if it proves feasible.'},a:400}]},
+{n:4,c:'--c4',t:{ml:'ക്ഷേത്രത്തിനുള്ളിൽ',en:'Inside the temple'},w:{ml:'ചുറ്റമ്പലം, ഭക്ഷണശാല, അരങ്ങേറ്റ വേദി',en:'Chuttambalam, dining hall, Arangettam stage'},items:[
+ {t:{ml:'ചുറ്റമ്പലം ചെമ്പ് അടിക്കൽ',en:'Copper roofing of the chuttambalam'},d:{ml:'അമ്പലത്തിനുള്ളിൽ ചുറ്റമ്പലത്തിന് ചെമ്പ് അടിക്കൽ.',en:'Copper cladding on the chuttambalam inside the temple.'},a:200},
+ {t:{ml:'ഭക്ഷണശാലയും സാമഗ്രികളും',en:'Dining hall and equipment'},d:{ml:'അമ്പലത്തിനുള്ളിൽ ഭക്ഷണശാലയും അനുബന്ധ സാമഗ്രികളും.',en:'A dining hall inside the temple, with its equipment.'},a:100},
+ {t:{ml:'അരങ്ങേറ്റ വേദി',en:'Arangettam stage'},d:{ml:'അമ്പലത്തിനുള്ളിൽ കലാപരിപാടികളുടെ അരങ്ങേറ്റത്തിനായി സ്റ്റേജും മറ്റ് കാര്യങ്ങളും.',en:'A stage inside the temple for debut performances, with allied works.'},a:50},
+]},
+{n:5,c:'--c5',t:{ml:'പുറത്ത്: തെക്കും പടിഞ്ഞാറും',en:'Outside: south and west sides'},w:{ml:'തെക്ക് ഗ്രൗണ്ടും പടിഞ്ഞാറെ നടയും',en:'South ground and western entrance'},items:[
+ {t:{ml:'തെക്ക് ഭാഗം: സ്റ്റേജും ഗ്രൗണ്ടും',en:'South side: stage and ground'},d:{ml:'അമ്പലത്തിന് തെക്ക് ഭാഗത്തെ സ്റ്റേജും ക്ഷേത്രം ഗ്രൗണ്ടും നവീകരിക്കൽ.',en:'Renovating the stage and temple ground south of the temple.'},a:50},
+ {t:{ml:'പടിഞ്ഞാറെ നടയും പാർക്കിംഗും',en:'Western nada and parking'},d:{ml:'അരയാൽ തറ വെട്ടിച്ചുരുക്കി, വാഹന പാർക്കിംഗ് ഉൾപ്പെടെ തുറസ്സായ പടിഞ്ഞാറെ നട.',en:'The existing arayal thara is trimmed to open up the western entrance, with vehicle parking.'},a:20}]}
+];
+var ICON={water:'M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0',path:'M8 21 10 3M16 21 14 3M12 6v3M12 12v3M12 18v2',canopy:'M3 10 12 4l9 6M5 10v10M12 10v10M19 10v10M3 20h18',gopuram:'M12 3l4 5H8zM7 8l-2 5h14l-2-5M5 13v8h14v-8M10 21v-4a2 2 0 0 1 4 0v4',roof:'M2 12c4-1 7-4 10-8 3 4 6 7 10 8M5 14v6M12 14v6M19 14v6M3 20h18',dining:'M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-2 6 0 8v10M17 3v8',stage:'M3 5h18v3H3zM5 8v12M19 8v12M3 20h18M9 20v-7h6v7',ground:'M4 21V4l11 4-11 4M3 21h18',car:'M5 16v-5l2-5h10l2 5v5M3 16h18M5 16v3M19 16v3M7 12h10'};
+var order=['water','path','canopy','gopuram','roof','dining','stage','ground','car'],k=0;
+S.forEach(function(s){s.items.forEach(function(i){i.i=order[k++]})});
+function ic(n){return '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+ICON[n]+'"/></svg>'}
+var T={
+ brand:{ml:'ശ്രീ സുബ്രഹ്മണ്യ സ്വാമി ക്ഷേത്രം, പയ്യന്നൂർ',en:'Sri Subrahmanya Swamy Temple, Payyanur'},
+ title:{ml:'ക്ഷേത്ര നവീകരണ പദ്ധതി',en:'Temple renovation plan'},
+ lede:{ml:'ചിറയിൽ തുടങ്ങി ശ്രീകോവിലിലേക്ക് നടന്നുകയറുന്ന വഴിയിലൂടെ, ഓരോ പ്രവൃത്തിയും ഇവിടെ ക്രമത്തിൽ കാണാം. തുകകൾ ഏകദേശ കണക്കുകളാണ്.',en:'Follow the walk from the Chira up to the sanctum, and see each piece of work in order. All amounts are estimates.'},
+ meta:{ml:'ഒൻപത് പ്രവൃത്തികളുടെ ആകെ തുക, ഗോപുരത്തിന്റെ ₹4 കോടി ഉൾപ്പെടെ. ഏകദേശ കണക്കാണ്.',en:'Total for all nine works, with the Gopuram at ₹4 crore. All figures are estimates.'},
+ walkH:{ml:'ചിറ മുതൽ ക്ഷേത്രം വരെ',en:'From the Chira to the temple'},
+ walkSub:{ml:'അഞ്ച് ഘട്ടങ്ങൾ: ചിറയിൽ നിന്ന് ഗോപുരം വഴി ക്ഷേത്രത്തിനുള്ളിലേക്ക്, ഒടുവിൽ പുറത്തെ തെക്ക്, പടിഞ്ഞാറ് ഭാഗങ്ങൾ. വിശദാംശം കാണാൻ ഘട്ടം തുറക്കുക.',en:'Five stages: from the Chira through the Gopuram into the temple, then the outer south and west sides. Open a stage to see its works.'},
+ sum:{ml:'ഈ ഘട്ടത്തിന്റെ തുക',en:'Stage total'},
+ aboutH:{ml:'പദ്ധതിയിൽ പങ്കാളിയാകാൻ',en:'Taking part in the project'},
+ aboutP:{ml:'ഔദ്യോഗിക വിവരങ്ങൾ ക്ഷേത്ര കമ്മിറ്റി പ്രസിദ്ധീകരിക്കുമ്പോൾ ഇവിടെ ചേർക്കും. അതുവരെ സംഭാവനയ്ക്കായി ഏതെങ്കിലും അക്കൗണ്ട് വിവരം പങ്കിടരുത്.',en:'Official details will be added here once the temple committee publishes them. Until then, please don’t send money to any account quoted from elsewhere.'},
+ about:[[{ml:'കമ്മിറ്റി / ദേവസ്വം ഓഫീസ്',en:'Committee / devaswom office'},{ml:'ചേർക്കാനുണ്ട്',en:'To be added'}],[{ml:'അംഗീകൃത പ്ലാനും എസ്റ്റിമേറ്റും',en:'Approved plans and estimate'},{ml:'അനുമതി കാത്തിരിക്കുന്നു',en:'Awaiting approval'}],[{ml:'ബാങ്ക് / യു.പി.ഐ / രസീത്',en:'Bank / UPI / receipts'},{ml:'സ്ഥിരീകരിച്ചവ മാത്രം',en:'Verified details only'}]],
+ wa:{ml:'വാട്ട്സ്ആപ്പിൽ പങ്കിടുക',en:'Share on WhatsApp'},copy:{ml:'ലിങ്ക് പകർത്തുക',en:'Copy link'},copied:{ml:'ലിങ്ക് പകർത്തി.',en:'Link copied.'},
+ foot:{ml:'ഫീൽഡ് നോട്ടിലെ ഒൻപത് ഇനങ്ങളെ അടിസ്ഥാനമാക്കിയ ഏകദേശ കണക്കുകൾ. അന്തിമ എസ്റ്റിമേറ്റ് അല്ല.',en:'Estimates based on the nine items in the field note. Not a final estimate.'},
+ ex:{ml:'എല്ലാം തുറക്കുക',en:'Open all'},co:{ml:'എല്ലാം ചുരുക്കുക',en:'Close all'},play:{ml:'വീഡിയോ പ്ലേ ചെയ്യുക',en:'Play walkthrough'},media:{ml:'ഫോട്ടോ / വോയ്സ്ഓവർ ചേർക്കുക',en:'Add photos / voice-over'},hint:{ml:'പേരുകൾ: intro.jpg, 1.jpg … 5.jpg, outro.jpg · ml-1.mp3, en-1.mp3 …',en:'File names: intro.jpg, 1.jpg … 5.jpg, outro.jpg · ml-1.mp3, en-1.mp3 …'},cr:{ml:'കോടി',en:'Cr'},lk:{ml:'ലക്ഷം',en:'lakh'}
+};
+function t(o){return o[lang]}
+function val(a){return a}
+function fmt(l){var cr=l/100;return l>=100?'₹'+(+cr.toFixed(2))+' '+t(T.cr):'₹'+l+' '+t(T.lk)}
+function stageTotal(s){return s.items.reduce(function(x,i){return x+val(i.a)},0)}
+function grand(){return S.reduce(function(x,s){return x+stageTotal(s)},0)}
+function $(id){return document.getElementById(id)}
+function render(){
+  document.body.dataset.lang=lang;document.documentElement.lang=lang;
+  $('brand').textContent=t(T.brand);$('title').textContent=t(T.title);$('lede').textContent=t(T.lede);
+  document.title=t(T.brand)+' — '+t(T.title);
+  var g=grand();
+  $('total').innerHTML='₹'+(+(g/100).toFixed(2))+'<small>'+t(T.cr)+'</small>';
+  $('totalMeta').textContent=t(T.meta);
+  
+  $('stack').innerHTML=S.map(function(s){return '<i style="flex-grow:'+stageTotal(s)+';background:var('+s.c+')"></i>'}).join('');
+  $('legend').innerHTML=S.map(function(s){return '<a href="#st'+s.n+'"><b style="background:var('+s.c+')"></b>'+s.n+'. '+t(s.t)+' · '+fmt(stageTotal(s))+'</a>'}).join('');
+  $('walkH').textContent=t(T.walkH);$('walkSub').textContent=t(T.walkSub);$('toggleAll').textContent=S.every(function(s){return open[s.n]})?t(T.co):t(T.ex);
+  $('path').innerHTML=S.map(function(s){
+    var st=stageTotal(s),isOpen=!!open[s.n];
+    var rows=s.items.map(function(i){var v=val(i.a);
+      return '<div class="item"><span class="ibox" style="color:var('+s.c+')">'+ic(i.i)+'</span><div class="body"><div class="top"><h4>'+t(i.t)+'</h4><span class="v">'+fmt(v)+'</span></div><p>'+t(i.d)+'</p>'+(i.tag?'<span class="tag">'+t(i.tag)+'</span>':'')+'<div class="share"><i style="width:'+Math.round(v/g*1000)/10+'%;background:var('+s.c+')"></i></div></div></div>'}).join('');
+    return '<li class="stage" id="st'+s.n+'" data-open="'+isOpen+'"><span class="node" style="background:var('+s.c+')">'+s.n+'</span><div class="card" style="border-top:4px solid var('+s.c+')"><button class="head" type="button" data-n="'+s.n+'" aria-expanded="'+isOpen+'"><span><h3>'+t(s.t)+'</h3><div class="where">'+t(s.w)+'</div></span><span class="amt"><strong>'+fmt(st)+'</strong><span>'+Math.round(st/g*100)+'%<span class="chev" aria-hidden="true">▾</span></span></span></button><div class="items">'+rows+'</div></div></li>'}).join('');
+  $('aboutH').textContent=t(T.aboutH);$('aboutP').textContent=t(T.aboutP);
+  $('aboutL').innerHTML=T.about.map(function(r){return '<li><span>'+t(r[0])+'</span><span>'+t(r[1])+'</span></li>'}).join('');
+  $('wa').textContent=t(T.wa);$('copy').textContent=t(T.copy);$('foot').textContent=t(T.foot);$('playBtn').innerHTML=ic('play')+'<span>'+t(T.play)+'</span>';
+  $('wa').href='https://wa.me/?text='+encodeURIComponent(t(T.brand)+' — '+t(T.title)+'\n'+location.href.split('#')[0]);
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang)});
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.id==='toggleAll'){var all=S.every(function(s){return open[s.n]});S.forEach(function(s){open[s.n]=!all});render()}else if(b.dataset.l){lang=b.dataset.l;render()}
+  
+  else if(b.dataset.n){var n=+b.dataset.n;open[n]=!open[n];render();var el=$('st'+n);if(el){var f=el.querySelector('.head');if(f)f.focus({preventScroll:true})}}
+  else if(b.id==='copy'){var u=location.href.split('#')[0];
+    (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){$('toast').textContent=t(T.copied)},function(){$('toast').textContent=u})}
+});
+document.addEventListener('click',function(e){var a=e.target.closest('.legend a');if(a){var n=+a.getAttribute('href').slice(3);if(!open[n]){open[n]=true;setTimeout(render,0)}}});
+ICON.play='M7 4v16l13-8z';ICON.pause='M8 4v16M16 4v16';ICON.prev='M15 5l-7 7 7 7';ICON.next='M9 5l7 7-7 7';ICON.full='M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5';ICON.x='M5 5l14 14M19 5 5 19';ICON.plus='M12 5v14M5 12h14';
+// Photos and voice-over. Keys: 0 = intro, 1-5 = stages, 6 = outro. Add URLs or data URIs here, or use the in-player picker.
+var MEDIA={photo:{},vo:{ml:{},en:{}}};
+var cine=document.createElement('div');cine.id='cine';cine.setAttribute('role','dialog');cine.setAttribute('aria-modal','true');cine.setAttribute('aria-label','Walkthrough');
+cine.innerHTML='<div id="scs"></div><audio id="vo"></audio><div class="ctl"><div class="segs" id="segs"></div><div class="crow"><button class="cb" id="cPrev" type="button" aria-label="Previous">'+ic('prev')+'</button><button class="cb" id="cPlay" type="button" aria-label="Play or pause"></button><button class="cb" id="cNext" type="button" aria-label="Next">'+ic('next')+'</button><span class="sp"></span><button class="cb" id="cLang" type="button"></button><button class="cb" id="cMedia" type="button"></button><button class="cb" id="cFull" type="button" aria-label="Full screen">'+ic('full')+'</button><button class="cb" id="cClose" type="button" aria-label="Close">'+ic('x')+'</button></div></div><input type="file" id="cFile" multiple accept="image/*,audio/*" hidden>';
+document.body.appendChild(cine);
+var sc=[],P={on:false,i:0,t:0,dur:8000,base:8000,playing:true,last:0,rev:[],idle:0},vo=$('vo');
+function build(){
+  var g=grand();
+  sc=[{k:0,c:'--c3'}].concat(S.map(function(s){return{k:s.n,c:s.c,s:s}}),[{k:6,c:'--c3'}]);
+  $('scs').innerHTML=sc.map(function(o){
+    var bg=MEDIA.photo[o.k]?'background-image:url('+MEDIA.photo[o.k]+')':'background:linear-gradient(135deg,color-mix(in srgb,var('+o.c+') 70%,#000),#0b0d0c)',body;
+    if(o.s){var s=o.s;body='<div class="hd"><span class="num rv" style="background:var('+s.c+')">'+s.n+'</span><h2 class="rv">'+t(s.t)+'</h2><p class="where rv">'+t(s.w)+'</p><div class="tot rv" data-cnt="'+stageTotal(s)+'"></div></div><ul>'+s.items.map(function(i){return '<li class="rv"><span class="ibox">'+ic(i.i)+'</span><div><b>'+t(i.t)+'</b><p>'+t(i.d)+'</p></div><span class="v">'+fmt(i.a)+'</span></li>'}).join('')+'</ul>'}
+    else if(o.k===0)body='<div class="hd"><p class="kick rv">'+t(T.brand)+'</p><h2 class="rv">'+t(T.title)+'</h2><p class="where rv">'+t(T.lede)+'</p><div class="tot rv" data-cnt="'+g+'"></div></div>';
+    else body='<div class="hd"><h2 class="rv">'+t(T.title)+'</h2><div class="tot rv" data-cnt="'+g+'"></div><p class="where rv">'+t(T.meta)+'</p></div><ul>'+S.map(function(s){return '<li class="rv"><span class="num" style="width:38px;background:var('+s.c+')">'+s.n+'</span><div><b>'+t(s.t)+'</b></div><span class="v">'+fmt(stageTotal(s))+'</span></li>'}).join('')+'</ul>';
+    return '<section class="sc"><div class="bg" style="'+bg+'"></div>'+(o.s?'<div class="ghost">'+ic(o.s.items[0].i)+'</div>':'')+'<div class="in">'+body+'</div></section>'}).join('');
+  $('segs').innerHTML=sc.map(function(){return '<i><b></b></i>'}).join('');
+  [].forEach.call($('segs').children,function(e,j){e.onclick=function(){go(j)}});
+}
+function layout(){
+  var cur=$('scs').children[P.i],all=[].slice.call(cur.querySelectorAll('.rv')),h=cur.querySelectorAll('.hd .rv').length,n=Math.max(1,all.length-h),gap=Math.max(1500,(P.dur-2800)/n);
+  P.rev=all.map(function(el,r){return{el:el,at:r<h?200+r*350:1600+(r-h)*gap}});
+  cur.querySelector('.bg').style.setProperty('--d',P.dur+'ms');
+}
+function go(i){
+  i=Math.max(0,Math.min(sc.length-1,i));P.i=i;P.t=0;
+  var els=$('scs').children;
+  [].forEach.call(els,function(e,j){e.classList.toggle('on',j===i);if(j===i){[].forEach.call(e.querySelectorAll('.rv'),function(r){r.classList.remove('show')});var b=e.querySelector('.bg');b.classList.remove('kb');void b.offsetWidth;b.classList.add('kb')}});
+  [].forEach.call($('segs').children,function(e,j){e.firstChild.style.width=j<i?'100%':'0'});
+  P.base=2600+Math.max(1,els[i].querySelectorAll('.rv').length-els[i].querySelectorAll('.hd .rv').length)*2300;P.dur=P.base;layout();
+  var src=MEDIA.vo[lang][i];vo.pause();
+  if(src){vo.src=src;vo.onloadedmetadata=function(){P.dur=Math.max(P.base,vo.duration*1000+900);layout()};if(P.playing){var r=vo.play();if(r&&r.catch)r.catch(function(){})}}else{vo.removeAttribute('src')}
+}
+function tick(){
+  var cur=$('scs').children[P.i];
+  $('segs').children[P.i].firstChild.style.width=Math.min(100,P.t/P.dur*100)+'%';
+  P.rev.forEach(function(r){if(P.t>=r.at)r.el.classList.add('show')});
+  var c=cur.querySelector('[data-cnt]');if(c){var e=Math.min(1,P.t/1600);c.textContent=fmt(Math.round(+c.dataset.cnt*(1-Math.pow(1-e,3))))}
+  if(P.t>=P.dur){if(P.i<sc.length-1)go(P.i+1);else{P.playing=false;P.ended=true;vo.pause();upd()}}
+}
+function loop(ts){if(!P.on)return;var dt=Math.min(100,ts-(P.last||ts));P.last=ts;if(P.playing){P.t+=dt;tick()}requestAnimationFrame(loop)}
+function upd(){$('cPlay').innerHTML=ic(P.playing?'pause':'play');cine.classList.toggle('paused',!P.playing);$('cLang').textContent=lang==='ml'?'EN':'മലയാളം';$('cMedia').innerHTML=ic('plus')+'<span>'+t(T.media)+'</span>';$('cMedia').title=t(T.hint)}
+function wake(){cine.classList.remove('idle');clearTimeout(P.idle);P.idle=setTimeout(function(){if(P.playing)cine.classList.add('idle')},3000)}
+function toggle(){if(P.ended){P.ended=false;P.playing=true;go(0)}else{P.playing=!P.playing;if(vo.src){if(P.playing){var r=vo.play();if(r&&r.catch)r.catch(function(){})}else vo.pause()}}upd()}
+function openCine(){build();cine.classList.add('open');document.body.style.overflow='hidden';P.on=true;P.playing=true;P.ended=false;P.last=0;go(0);upd();wake();requestAnimationFrame(loop);var f=cine.requestFullscreen||cine.webkitRequestFullscreen;if(f){var r=f.call(cine);if(r&&r.catch)r.catch(function(){})}$('cClose').focus()}
+function closeCine(){P.on=false;vo.pause();cine.classList.remove('open');document.body.style.overflow='';if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen()}
+$('playBtn').addEventListener('click',openCine);
+$('cPlay').onclick=toggle;$('cNext').onclick=function(){P.ended=false;go(P.i+1)};$('cPrev').onclick=function(){P.ended=false;go(P.i-1)};$('cClose').onclick=closeCine;
+$('cFull').onclick=function(){if(document.fullscreenElement){document.exitFullscreen()}else{var f=cine.requestFullscreen||cine.webkitRequestFullscreen;if(f)f.call(cine)}};
+$('cLang').onclick=function(){lang=lang==='ml'?'en':'ml';render();var i=P.i;build();go(i);upd()};
+$('cMedia').onclick=function(){$('cFile').click()};
+$('cFile').onchange=function(e){
+  var key=function(x){return x==='intro'?0:x==='outro'?6:+x};
+  [].forEach.call(e.target.files,function(f){var n=f.name.toLowerCase().replace(/\.[^.]+$/,''),m;
+    if(f.type.indexOf('image')===0&&(m=n.match(/^(intro|outro|\d)$/)))MEDIA.photo[key(m[1])]=URL.createObjectURL(f);
+    else if(f.type.indexOf('audio')===0&&(m=n.match(/^(ml|en)[-_ ]?(intro|outro|\d)$/)))MEDIA.vo[m[1]][key(m[2])]=URL.createObjectURL(f)});
+  var i=P.i;build();go(i);e.target.value=''};
+['mousemove','touchstart','click'].forEach(function(ev){cine.addEventListener(ev,wake)});
+document.addEventListener('keydown',function(e){if(!P.on)return;wake();
+  if(e.key==='Escape')closeCine();else if(e.key===' '){e.preventDefault();toggle()}else if(e.key==='ArrowRight'){P.ended=false;go(P.i+1)}else if(e.key==='ArrowLeft'){P.ended=false;go(P.i-1)}});
+render();
+})();
+</script>
+</body>
+</html>
