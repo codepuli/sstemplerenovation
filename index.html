@@ -343,12 +343,23 @@ $('cPlay').onclick=toggle;$('cNext').onclick=function(){P.ended=false;go(P.i+1)}
 $('cFull').onclick=function(){if(document.fullscreenElement){document.exitFullscreen()}else{var f=cine.requestFullscreen||cine.webkitRequestFullscreen;if(f)f.call(cine)}};
 $('cLang').onclick=function(){lang=lang==='ml'?'en':'ml';render();var i=P.i;build();go(i);upd()};
 $('cMedia').onclick=function(){$('cFile').click()};
+// Owner-only: the add photos / voice-over button is hidden from the public. Open the page with #edit at the end of the address to see it.
+(function(){var m=$('cMedia');function sh(){m.style.display=location.hash==='#edit'?'':'none'}sh();window.addEventListener('hashchange',sh)})();
 $('cFile').onchange=function(e){
   var key=function(x){return x==='intro'?0:x==='outro'?6:+x};
   [].forEach.call(e.target.files,function(f){var n=f.name.toLowerCase().replace(/\.[^.]+$/,''),m;
     if(f.type.indexOf('image')===0&&addPhoto(n,URL.createObjectURL(f))){}
     else if(f.type.indexOf('audio')===0&&(m=n.match(/^(ml|en)[-_ ]?(intro|outro|\d)$/)))MEDIA.vo[m[1]][key(m[2])]=URL.createObjectURL(f)});
   var i=P.i;build();go(i);e.target.value=''};
+// Auto-pick photos and voice-over from the site's images folder: only files that actually exist are used.
+(function(){
+  var B='https://sstrenovation.pages.dev/images/',EX=['jpeg','jpg','png','webp'],done={};
+  function refresh(){if(P.on){var i=P.i;build();go(i);upd()}}
+  Object.keys(SLOT).forEach(function(n){EX.forEach(function(x){var im=new Image(),u=B+n+'.'+x;
+    im.onload=function(){if(done[n])return;done[n]=1;addPhoto(n,u);refresh()};im.src=u})});
+  ['ml','en'].forEach(function(l){['intro','outro',1,2,3,4,5].forEach(function(k){var a=new Audio(),u=B+l+'-'+k+'.mp3',kk=k==='intro'?0:k==='outro'?6:k;
+    a.preload='metadata';a.onloadedmetadata=function(){if(!MEDIA.vo[l][kk]){MEDIA.vo[l][kk]=u;refresh()}};a.src=u})});
+})();
 ['mousemove','touchstart','click'].forEach(function(ev){cine.addEventListener(ev,wake)});
 document.addEventListener('keydown',function(e){if(!P.on)return;wake();
   if(e.key==='Escape')closeCine();else if(e.key===' '){e.preventDefault();toggle()}else if(e.key==='ArrowRight'){P.ended=false;go(P.i+1)}else if(e.key==='ArrowLeft'){P.ended=false;go(P.i-1)}});
