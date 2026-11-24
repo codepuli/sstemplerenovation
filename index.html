@@ -247,6 +247,30 @@ footer{padding:32px 0 48px;color:var(--mute);font-size:13px}
 .gplay svg{width:46%;fill:#fff;margin-left:6%}
 .gh{font-size:clamp(15px,3.8vw,20px);opacity:.92}
 @keyframes gp{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,.4)}50%{transform:scale(1.06);box-shadow:0 0 0 18px rgba(255,255,255,0)}}
+
+/* ===== v2: text zone | media zone (no overlap), slower reveals ===== */
+#cine{--ctl:96px}
+.sc{transition:opacity 1.2s ease}
+.sc::after,.sc .ghost{display:none}
+.sc .media{position:absolute;z-index:1;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 50px rgba(0,0,0,.45);left:max(4vw,16px);right:max(4vw,16px);top:calc(max(2.5vh,16px) + env(safe-area-inset-top,0px));height:min(34vh,80vw)}
+.sc .media.paper{background:#f4eddc}
+.sc .media.lite{border-color:transparent;box-shadow:none}
+.media .pen{position:absolute;inset:0;transition:opacity 1.4s ease}
+.media .pen svg{width:100%;height:100%;display:block}
+.media.ph .pen{opacity:0}
+.sc .media .bg{position:absolute;inset:0;isolation:isolate;background:var(--u) center/contain no-repeat;opacity:0;transition:opacity 1.6s ease}
+.sc .media .bg.on{opacity:1}
+.sc .media .bg::before{content:"";position:absolute;inset:-12%;z-index:-1;background:var(--u) center/cover;filter:blur(22px) brightness(.5)}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
+.sc .in{left:max(5vw,18px);right:max(5vw,18px);width:auto;max-width:none;top:calc(max(2.5vh,16px) + min(34vh,80vw) + 16px + env(safe-area-inset-top,0px));bottom:calc(var(--ctl) + 8px);gap:16px;justify-content:center;overflow:hidden}
+.sc.intro .in,.sc.end .in{max-width:none}
+.sc .tot{white-space:nowrap}
+.rv{transition:opacity 1s ease,transform 1s ease}
+.bt{transition:opacity .9s ease,transform .9s ease}
+@media (min-aspect-ratio:6/5) and (min-width:701px){
+ .sc .media{left:auto;right:max(3vw,20px);width:50vw;top:max(5vh,24px);height:auto;bottom:calc(var(--ctl) + 12px)}
+ .sc .in{left:max(4vw,24px);right:auto;width:41vw;top:max(5vh,24px);bottom:calc(var(--ctl) + 12px)}
+}
 </style>
 </head>
 <body data-lang="ml">
@@ -300,9 +324,9 @@ var lang='ml',open={1:true,2:true,3:true,4:true};
 var S=[
 {n:1,c:'--c1',t:{ml:'ചിറ',en:'The Chira'},w:{ml:'ക്ഷേത്രക്കുളം',en:'Temple pond'},items:[
  {t:{ml:'ചിറ നവീകരണം',en:'Chira renovation'},d:{ml:'ചിറയുടെ സമഗ്ര നവീകരണം.',en:'Full renovation of the temple pond.'},a:150}]},
-{n:2,c:'--c2',t:{ml:'ഇന്റർലോക്ക് പാതയും നടപന്തലും',en:'Pathway and nadapanthal'},w:{ml:'ചിറ മുതൽ ക്ഷേത്രം വരെ',en:'From the Chira to the temple'},items:[
+{n:2,c:'--c2',t:{ml:'ഇന്റർലോക്ക് പാതയും നടപ്പന്തലും',en:'Pathway and nadapanthal'},w:{ml:'ചിറ മുതൽ ക്ഷേത്രം വരെ',en:'From the Chira to the temple'},items:[
  {t:{ml:'ഇന്റർലോക്ക് പാതയും ഉദ്യാനവും',en:'Interlock paving and garden'},d:{ml:'ക്ഷേത്രം മുതൽ ചിറ വരെയുള്ള സ്ഥലം മുഴുവൻ ഇന്റർലോക്ക്; അതിനുള്ളിൽ ഒരു ഉദ്യാനം.',en:'The whole stretch between temple and Chira is paved in interlock, with a garden inside it.'},a:100},
- {t:{ml:'300 മീറ്റർ നടപന്തൽ',en:'300 m nadapanthal'},d:{ml:'ഇപ്പോഴുള്ള മണ്ഡപം പൊളിച്ചുനീക്കി ചിറ വരെ 300 മീറ്റർ നടപന്തൽ.',en:'The existing mandapam is cleared and a 300 m covered walkway runs up to the Chira.'},a:100}]},
+ {t:{ml:'300 മീറ്റർ നടപ്പന്തൽ',en:'300 m nadapanthal'},d:{ml:'ഇപ്പോഴുള്ള മണ്ഡപം പൊളിച്ചുനീക്കി ചിറ വരെ 300 മീറ്റർ നടപ്പന്തൽ.',en:'The existing mandapam is cleared and a 300 m covered walkway runs up to the Chira.'},a:100}]},
 {n:3,c:'--c3',t:{ml:'ഗോപുരം',en:'The Gopuram'},w:{ml:'മതിലിനകത്തേക്കുള്ള പ്രവേശനം',en:'Entry into the compound wall'},items:[
  {t:{ml:'പ്രവേശന ഗോപുരം',en:'Entrance Gopuram'},d:{ml:'ഉള്ളിൽ 5–6 മുറികൾ. സാധ്യമെങ്കിൽ ഒരു വലിയ സുബ്രഹ്മണ്യ രൂപവും.',en:'With 5–6 rooms inside, and a large Subrahmanya figure if it proves feasible.'},a:600}]},
 {n:4,c:'--c4',t:{ml:'ക്ഷേത്രത്തിനുള്ളിൽ',en:'Inside the temple'},w:{ml:'ചുറ്റമ്പലം, ഭക്ഷണശാല, അരങ്ങേറ്റ വേദി',en:'Chuttambalam, dining hall, Arangettam stage'},items:[
@@ -389,7 +413,7 @@ function pencil(kind){
    +(light?'':W.map(function(w){return '<path class="wash" d="'+w[0]+'" fill="'+w[1]+'"/>'}).join(''))
    +L.map(function(l,k){return '<path class="ln'+(l[2]?' g':'')+'" pathLength="1" style="--w:'+(k*st).toFixed(2)+'s;stroke-width:'+l[1]+'" d="'+l[0]+'"/>'}).join('')+'</g></svg></div>';
 }
-var TRP=["ഓം ശ്രീ സുബ്രഹ്മണ്യായ നമഃ. ഭാരതത്തിലെ പ്രമുഖ സുബ്രഹ്മണ്യ ക്ഷേത്രങ്ങളിൽ ഒന്നാണ് പയ്യന്നൂർ ശ്രീ സുബ്രഹ്മണ്യ സ്വാമി ക്ഷേത്രം. പരശുരാമൻ പ്രതിഷ്ഠിച്ച ഈ ക്ഷേത്രം, 1789-ൽ ടിപ്പുവിന്റെ പടയോട്ടക്കാലത്ത് നശിപ്പിക്കപ്പെട്ടിരുന്നു. മൂന്നു വർഷത്തിന് ശേഷം താഴക്കാട്ട് മനയുടെയും നാട്ടുപ്രമാണിമാരുടെയും നേതൃത്വത്തിൽ പുനരുദ്ധീകരണം തുടങ്ങി. 1838-ൽ ഈ പ്രവൃത്തികൾ പൂർത്തിയായി. ഇന്ന് കാണുന്ന ക്ഷേത്രത്തിന്റെ ഒട്ടുമിക്ക ഭാഗങ്ങളും അക്കാലത്ത് നിർമ്മിക്കപ്പെട്ടതാണ്. പിന്നീടുള്ള കാലങ്ങളിൽ ക്ഷേത്രത്തിൽ നിരവധി അറ്റകുറ്റപ്പണികളും നവനിർമ്മിതികളും നടന്നിട്ടുണ്ട്. കാലപ്പഴക്കവും കാലാവസ്ഥയും ഭക്തജനത്തിരക്കും മൂലം സമഗ്രമായ നവീകരണം ഇപ്പോൾ അനിവാര്യമാണ്. സാധാരണയായി ക്ഷേത്രത്തിന്റെ ഓരോ ഭാഗത്തായി ഒതുങ്ങിനിന്ന അറ്റകുറ്റപ്പണികൾക്ക് പകരം, ക്ഷേത്രത്തെയും പരിസരത്തെയും ഒരു ഏകീകൃത വ്യവസ്ഥയായി കണ്ടാണ് ഈ പദ്ധതി രൂപകൽപ്പന ചെയ്തിരിക്കുന്നത്. ഭാരതത്തിന്റെ യശസ്സ് വാനോളം ഉയർത്തിയ നിരവധി മഹാരഥന്മാരുടെ നാടാണ് പയ്യന്നൂർ. സ്വാതന്ത്ര്യസമരകാലത്ത് സ്തുത്യർഹമായ പങ്കുവഹിച്ച പയ്യന്നൂർ, രണ്ടാം ബർദോളി എന്നും അറിയപ്പെടുന്നു. ഭാരതത്തിന്റെ ടൂറിസം ഭൂപടത്തിൽ പ്രധാന തീർത്ഥാടന കേന്ദ്രമായി വളരാനുള്ള ഉൾക്കരുത്ത് ഈ ക്ഷേത്രത്തിനുണ്ട്. ആ സ്വപ്നം യാഥാർത്ഥ്യമാക്കാനുള്ള ചുവടുവയ്പാണ് ഈ പുനരുദ്ധാരണ പദ്ധതി. ക്ഷേത്രദർശനം തുടങ്ങുന്നത് ക്ഷേത്രക്കുളമായ ചിറയിൽ കുളിച്ചുകൊണ്ടാണല്ലോ. ചിറയിൽ തുടങ്ങി ശ്രീകോവിലിലേക്കും പുറത്തെ ഭാഗങ്ങളിലേക്കും നീളുന്ന ഈ പദ്ധതിയിൽ, ഗോപുരത്തിന്റെ ആറ് കോടി രൂപ ഉൾപ്പെടെ ഒൻപത് പ്രവൃത്തികൾക്കായി ഏകദേശം പതിനഞ്ച് കോടി രൂപയാണ് കണക്കാക്കുന്നത്. ഇവയെല്ലാം പ്രാഥമിക ഏകദേശ കണക്കുകളാണ്.", "ആദ്യം ചിറയുടെ നവീകരണം. ഏകദേശം ഒന്നരക്കോടി രൂപയാണ് ചെലവ് പ്രതീക്ഷിക്കുന്നത്. സമഗ്ര നവീകരണത്തിലൂടെ ഭക്തജനങ്ങൾക്ക് കൂടുതൽ സൗകര്യവും സുരക്ഷയും, ഒപ്പം ചിറയുടെ സൗന്ദര്യം ആസ്വദിക്കാനുള്ള ഇടവും ഒരുക്കാനാണ് ലക്ഷ്യമിടുന്നത്.", "അടുത്തത് ചിറ മുതൽ ക്ഷേത്രം വരെയുള്ള ഭാഗമാണ്. ക്ഷേത്രം മുതൽ ചിറ വരെയുള്ള സ്ഥലം മുഴുവൻ ഇന്റർലോക്ക് ടൈലുകൾ ഇട്ട നടപ്പാതയാണ് വിഭാവനം ചെയ്യുന്നത്. അതിനടുത്ത് ഒരു കോടി രൂപ ചെലവ് വരുന്ന ഒരു ഉദ്യാനവും പദ്ധതിയിലുണ്ട്. ഹരിതാഭമായ പാത എന്നതിലുപരി, ക്ഷേത്രത്തിന് പുറത്ത് അല്പനേരം വിശ്രമിക്കാനും ഈ ഉദ്യാനം സഹായിക്കും. ഇതോടൊപ്പം, നിലവിലുള്ള മണ്ഡപം പൊളിച്ചുനീക്കി ചിറ വരെ മുന്നൂറ് മീറ്റർ നടപന്തൽ നിർമ്മിക്കാൻ ഒരു കോടി രൂപയും കണക്കാക്കുന്നു.", "അടുത്തത് വളരെ പ്രധാനപ്പെട്ട ഭാഗമാണ്. മതിലിനകത്തേക്കുള്ള പ്രവേശന ഗോപുരം. ഏകദേശം ആറ് കോടി രൂപ ചെലവ് പ്രതീക്ഷിക്കുന്ന ഈ നിർമ്മിതി, ക്ഷേത്രത്തിന്റെ വാസ്തുവിദ്യയുമായി ഇണങ്ങുന്നതായിരിക്കും. ഉള്ളിൽ അഞ്ച് മുതൽ ആറ് വരെ മുറികളും, സാധ്യമെങ്കിൽ സുബ്രഹ്മണ്യ സ്വാമിയുടെ വലിയൊരു രൂപവും വിഭാവനം ചെയ്യുന്നു.", "ഇനിയുള്ളത് ക്ഷേത്രത്തിനുള്ളിലെ പ്രധാന പ്രവൃത്തികളാണ്; ആകെ ചെലവ് അഞ്ച് കോടി രൂപ. ചുറ്റമ്പലത്തിന് ചെമ്പ് അടിക്കാൻ മൂന്ന് കോടി രൂപയും, ക്ഷേത്രത്തിനുള്ളിൽ ഭക്ഷണശാലയും അനുബന്ധ സാമഗ്രികളും ഒരുക്കാൻ ഒരു കോടി രൂപയും കണക്കാക്കുന്നു. കലാപരിപാടികളുടെ അരങ്ങേറ്റത്തിനായി സ്റ്റേജും അനുബന്ധ സൗകര്യങ്ങളും ഒരുക്കാൻ ഒരു കോടി രൂപയും വകയിരുത്തിയിട്ടുണ്ട്.", "തുടർന്ന് പുറത്തെ ഭാഗങ്ങളിലെ നവീകരണങ്ങളാണ്; ആകെ തുക ഒരു കോടി രൂപ. ക്ഷേത്രത്തിന് തെക്ക് ഭാഗത്തെ സ്റ്റേജും ഗ്രൗണ്ടും നവീകരിക്കാൻ എഴുപത്തഞ്ച് ലക്ഷം രൂപയും, നിലവിലുള്ള അരയാൽത്തറ വെട്ടിച്ചുരുക്കി വാഹന പാർക്കിംഗ് ഉൾപ്പെടെ തുറസ്സായ പടിഞ്ഞാറെ നട ഒരുക്കാൻ ഇരുപത്തഞ്ച് ലക്ഷം രൂപയും കണക്കാക്കുന്നു.", "പയ്യന്നൂർ ശ്രീ സുബ്രഹ്മണ്യ സ്വാമി ക്ഷേത്ര നവീകരണ പദ്ധതിയിലെ ഒൻപത് പ്രവൃത്തികളുടെ ആകെ ഏകദേശ തുക പതിനഞ്ച് കോടി രൂപയാണ്. ഇത് അന്തിമ എസ്റ്റിമേറ്റ് അല്ല, ഫീൽഡ് നോട്ടുകളെ അടിസ്ഥാനമാക്കിയുള്ള ഏകദേശ കണക്ക് മാത്രമാണ്.", "ബൃഹത്തായ ഈ പദ്ധതിയിൽ പയ്യന്നൂർക്കാരുടെയും സർക്കാരിന്റെയും ലോകമെമ്പാടുമുള്ള ഭക്തജനങ്ങളുടെയും സഹായസഹകരണങ്ങൾ പ്രതീക്ഷിക്കുന്നു. പെരുമാളുടെ കൃപകൊണ്ട് ഈ പ്രവൃത്തികൾ വിജയകരമായി പൂർണ്ണതയിലെത്തുമെന്ന് പ്രത്യാശിക്കുന്നു."];
+var TRP=["ഓം ശ്രീ സുബ്രഹ്മണ്യായ നമഃ. ഭാരതത്തിലെ പ്രമുഖ സുബ്രഹ്മണ്യ ക്ഷേത്രങ്ങളിൽ ഒന്നാണ് പയ്യന്നൂർ ശ്രീ സുബ്രഹ്മണ്യ സ്വാമി ക്ഷേത്രം. പരശുരാമൻ പ്രതിഷ്ഠിച്ച ഈ ക്ഷേത്രം, 1789-ൽ ടിപ്പുവിന്റെ പടയോട്ടക്കാലത്ത് നശിപ്പിക്കപ്പെട്ടിരുന്നു. മൂന്നു വർഷത്തിന് ശേഷം താഴക്കാട്ട് മനയുടെയും നാട്ടുപ്രമാണിമാരുടെയും നേതൃത്വത്തിൽ പുനരുദ്ധീകരണം തുടങ്ങി. 1838-ൽ ഈ പ്രവൃത്തികൾ പൂർത്തിയായി. ഇന്ന് കാണുന്ന ക്ഷേത്രത്തിന്റെ ഒട്ടുമിക്ക ഭാഗങ്ങളും അക്കാലത്ത് നിർമ്മിക്കപ്പെട്ടതാണ്. പിന്നീടുള്ള കാലങ്ങളിൽ ക്ഷേത്രത്തിൽ നിരവധി അറ്റകുറ്റപ്പണികളും നവനിർമ്മിതികളും നടന്നിട്ടുണ്ട്. കാലപ്പഴക്കവും കാലാവസ്ഥയും ഭക്തജനത്തിരക്കും മൂലം സമഗ്രമായ നവീകരണം ഇപ്പോൾ അനിവാര്യമാണ്. സാധാരണയായി ക്ഷേത്രത്തിന്റെ ഓരോ ഭാഗത്തായി ഒതുങ്ങിനിന്ന അറ്റകുറ്റപ്പണികൾക്ക് പകരം, ക്ഷേത്രത്തെയും പരിസരത്തെയും ഒരു ഏകീകൃത വ്യവസ്ഥയായി കണ്ടാണ് ഈ പദ്ധതി രൂപകൽപ്പന ചെയ്തിരിക്കുന്നത്. ഭാരതത്തിന്റെ യശസ്സ് വാനോളം ഉയർത്തിയ നിരവധി മഹാരഥന്മാരുടെ നാടാണ് പയ്യന്നൂർ. സ്വാതന്ത്ര്യസമരകാലത്ത് സ്തുത്യർഹമായ പങ്കുവഹിച്ച പയ്യന്നൂർ, രണ്ടാം ബർദോളി എന്നും അറിയപ്പെടുന്നു. ഭാരതത്തിന്റെ ടൂറിസം ഭൂപടത്തിൽ പ്രധാന തീർത്ഥാടന കേന്ദ്രമായി വളരാനുള്ള ഉൾക്കരുത്ത് ഈ ക്ഷേത്രത്തിനുണ്ട്. ആ സ്വപ്നം യാഥാർത്ഥ്യമാക്കാനുള്ള ചുവടുവയ്പാണ് ഈ പുനരുദ്ധാരണ പദ്ധതി. ക്ഷേത്രദർശനം തുടങ്ങുന്നത് ക്ഷേത്രക്കുളമായ ചിറയിൽ കുളിച്ചുകൊണ്ടാണല്ലോ. ചിറയിൽ തുടങ്ങി ശ്രീകോവിലിലേക്കും പുറത്തെ ഭാഗങ്ങളിലേക്കും നീളുന്ന ഈ പദ്ധതിയിൽ, ഗോപുരത്തിന്റെ ആറ് കോടി രൂപ ഉൾപ്പെടെ ഒൻപത് പ്രവൃത്തികൾക്കായി ഏകദേശം പതിനഞ്ച് കോടി രൂപയാണ് കണക്കാക്കുന്നത്. ഇവയെല്ലാം പ്രാഥമിക ഏകദേശ കണക്കുകളാണ്.", "ആദ്യം ചിറയുടെ നവീകരണം. ഏകദേശം ഒന്നരക്കോടി രൂപയാണ് ചെലവ് പ്രതീക്ഷിക്കുന്നത്. സമഗ്ര നവീകരണത്തിലൂടെ ഭക്തജനങ്ങൾക്ക് കൂടുതൽ സൗകര്യവും സുരക്ഷയും, ഒപ്പം ചിറയുടെ സൗന്ദര്യം ആസ്വദിക്കാനുള്ള ഇടവും ഒരുക്കാനാണ് ലക്ഷ്യമിടുന്നത്.", "അടുത്തത് ചിറ മുതൽ ക്ഷേത്രം വരെയുള്ള ഭാഗമാണ്. ക്ഷേത്രം മുതൽ ചിറ വരെയുള്ള സ്ഥലം മുഴുവൻ ഇന്റർലോക്ക് ടൈലുകൾ ഇട്ട നടപ്പാതയാണ് വിഭാവനം ചെയ്യുന്നത്. അതിനടുത്ത് ഒരു കോടി രൂപ ചെലവ് വരുന്ന ഒരു ഉദ്യാനവും പദ്ധതിയിലുണ്ട്. ഹരിതാഭമായ പാത എന്നതിലുപരി, ക്ഷേത്രത്തിന് പുറത്ത് അല്പനേരം വിശ്രമിക്കാനും ഈ ഉദ്യാനം സഹായിക്കും. ഇതോടൊപ്പം, നിലവിലുള്ള മണ്ഡപം പൊളിച്ചുനീക്കി ചിറ വരെ മുന്നൂറ് മീറ്റർ നടപ്പന്തൽ നിർമ്മിക്കാൻ ഒരു കോടി രൂപയും കണക്കാക്കുന്നു.", "അടുത്തത് വളരെ പ്രധാനപ്പെട്ട ഭാഗമാണ്. മതിലിനകത്തേക്കുള്ള പ്രവേശന ഗോപുരം. ഏകദേശം ആറ് കോടി രൂപ ചെലവ് പ്രതീക്ഷിക്കുന്ന ഈ നിർമ്മിതി, ക്ഷേത്രത്തിന്റെ വാസ്തുവിദ്യയുമായി ഇണങ്ങുന്നതായിരിക്കും. ഉള്ളിൽ അഞ്ച് മുതൽ ആറ് വരെ മുറികളും, സാധ്യമെങ്കിൽ സുബ്രഹ്മണ്യ സ്വാമിയുടെ വലിയൊരു രൂപവും വിഭാവനം ചെയ്യുന്നു.", "ഇനിയുള്ളത് ക്ഷേത്രത്തിനുള്ളിലെ പ്രധാന പ്രവൃത്തികളാണ്; ആകെ ചെലവ് അഞ്ച് കോടി രൂപ. ചുറ്റമ്പലത്തിന് ചെമ്പ് അടിക്കാൻ മൂന്ന് കോടി രൂപയും, ക്ഷേത്രത്തിനുള്ളിൽ ഭക്ഷണശാലയും അനുബന്ധ സാമഗ്രികളും ഒരുക്കാൻ ഒരു കോടി രൂപയും കണക്കാക്കുന്നു. കലാപരിപാടികളുടെ അരങ്ങേറ്റത്തിനായി സ്റ്റേജും അനുബന്ധ സൗകര്യങ്ങളും ഒരുക്കാൻ ഒരു കോടി രൂപയും വകയിരുത്തിയിട്ടുണ്ട്.", "തുടർന്ന് പുറത്തെ ഭാഗങ്ങളിലെ നവീകരണങ്ങളാണ്; ആകെ തുക ഒരു കോടി രൂപ. ക്ഷേത്രത്തിന് തെക്ക് ഭാഗത്തെ സ്റ്റേജും ഗ്രൗണ്ടും നവീകരിക്കാൻ എഴുപത്തഞ്ച് ലക്ഷം രൂപയും, നിലവിലുള്ള അരയാൽത്തറ വെട്ടിച്ചുരുക്കി വാഹന പാർക്കിംഗ് ഉൾപ്പെടെ തുറസ്സായ പടിഞ്ഞാറെ നട ഒരുക്കാൻ ഇരുപത്തഞ്ച് ലക്ഷം രൂപയും കണക്കാക്കുന്നു.", "പയ്യന്നൂർ ശ്രീ സുബ്രഹ്മണ്യ സ്വാമി ക്ഷേത്ര നവീകരണ പദ്ധതിയിലെ ഒൻപത് പ്രവൃത്തികളുടെ ആകെ ഏകദേശ തുക പതിനഞ്ച് കോടി രൂപയാണ്. ഇത് അന്തിമ എസ്റ്റിമേറ്റ് അല്ല, ഫീൽഡ് നോട്ടുകളെ അടിസ്ഥാനമാക്കിയുള്ള ഏകദേശ കണക്ക് മാത്രമാണ്.", "ബൃഹത്തായ ഈ പദ്ധതിയിൽ പയ്യന്നൂർക്കാരുടെയും സർക്കാരിന്റെയും ലോകമെമ്പാടുമുള്ള ഭക്തജനങ്ങളുടെയും സഹായസഹകരണങ്ങൾ പ്രതീക്ഷിക്കുന്നു. പെരുമാളുടെ കൃപകൊണ്ട് ഈ പ്രവൃത്തികൾ വിജയകരമായി പൂർണ്ണതയിലെത്തുമെന്ന് പ്രത്യാശിക്കുന്നു."];
 var KW={1:['ഒന്നരക്കോടി'],2:['ഇന്റർലോക്ക് ടൈലുകൾ','നിലവിലുള്ള മണ്ഡപം'],3:['ആറ് കോടി'],4:['ചുറ്റമ്പലത്തിന് ചെമ്പ്','ഭക്ഷണശാലയും അനുബന്ധ','കലാപരിപാടികളുടെ'],5:['ക്ഷേത്രത്തിന് തെക്ക്','അരയാൽത്തറ']};
 var GOP=[['ക്ഷേത്ര വാസ്തുവിദ്യയോട് ഇണങ്ങുന്ന രൂപകൽപ്പന','വാസ്തുവിദ്യയുമായി'],['ഉള്ളിൽ '+'@@5–6 മുറികൾ@@','അഞ്ച് മുതൽ'],['സാധ്യമെങ്കിൽ ഭഗവാന്റെ വലിയ രൂപം','സുബ്രഹ്മണ്യ സ്വാമിയുടെ വലിയൊരു']];
 var AUB='https://sstrenovation.pages.dev/audio/audio';
@@ -422,13 +446,29 @@ function stageHTML(s){
 function sumHTML(g){
   return '<div class="hd"><h2 class="rv">'+t(T.title)+'</h2>'+UL+tot(g)+'<p class="where rv">'+t(T.meta)+'</p></div><ul>'+S.map(function(s,k){return '<li class="rv" data-f="'+(0.1+0.1*k).toFixed(2)+'"><span class="num" style="width:38px;background:var('+s.c+')">'+s.n+'</span><div><b>'+t(s.t)+'</b></div><span class="v">'+PW(fmt(stageTotal(s)))+'</span></li>'}).join('')+'</ul>'+R('അന്തിമ എസ്റ്റിമേറ്റ്','<p class="note">'+PW('അന്തിമ എസ്റ്റിമേറ്റ് അല്ല','hl')+' · ഏകദേശ കണക്ക് മാത്രം</p>');
 }
+/* ===== v2 engine: audio tracks, text-weighted sync, split layout ===== */
+var TR=[{k:[0,1,2],s:[0]},{k:[3],s:[1]},{k:[4],s:[2]},{k:[5],s:[3]},{k:[6],s:[4,5]},{k:[7],s:[6,7]}];
+function trOf(i){for(var j=0;j<TR.length;j++)if(TR[j].s.indexOf(i)>=0)return j;return 0}
+function wt(s,e){var w=0,x,c;e=e===undefined?s.length:e;for(x=0;x<e;x++){c=s.charAt(x);w+=c==='.'?10:c===','?4:1}return w}
+function plan(j){
+  var T=TR[j],est=0,av=true,known=0,unk=0,A=0,W=0,o=0,D,each;
+  T.s.forEach(function(s){est+=Math.max(6000,wt(TRP[s])*80);W+=wt(TRP[s])});
+  D=T.k.map(function(k){var d=MEDIA.dur[k];if(!MEDIA.au[k])av=false;if(d)known+=d*1000;else unk++;return d?d*1000:0});
+  each=unk?Math.max(4000,(est-known)/unk):0;P.base=[];
+  D=D.map(function(d){d=d||each;P.base.push(A);A+=d;return d});
+  P.off={};P.len={};T.s.forEach(function(s){var l=wt(TRP[s])/W*A;P.off[s]=o;P.len[s]=l;o+=l});
+  P.tr=j;P.av=av;P.D=D;P.A=A;P.pad=j===TR.length-1?2500:1200;P.end=A+P.pad;
+}
+function replan(){if(!P.on)return;var g=P.g;plan(P.tr);P.g=g;layout()}
+function meta(k){if(!MEDIA.au[k]||MEDIA.dur[k])return;var a=new Audio();a.preload='metadata';a.onloadedmetadata=function(){if(isFinite(a.duration)){MEDIA.dur[k]=a.duration;replan()}};a.src=MEDIA.au[k]}
 function build(){
   var g=grand();
   sc=[{k:0,c:'--c3',pen:'temple',kind:'intro'}].concat(S.map(function(s){return{k:s.n,c:s.c,s:s,pen:s.n===1?'pond':s.n===2?'path':s.n===3?'full':s.n===4?'inside':'peepal'}}),[{k:6,c:'--c3',out:true,pen:'lightpath',kind:'sum'},{k:7,c:'--c3',pen:'temple',kind:'end'}]);
   $('scs').innerHTML=sc.map(function(o){
-    var grad='background:linear-gradient(135deg,color-mix(in srgb,var('+o.c+') 70%,#000),#0b0d0c)',ph=MEDIA.photo[o.k]||[],layers=(ph.length?ph:[{}]).map(function(q){return '<div class="bg" style="'+(q.u?'background-image:url('+q.u+')':grad)+'"></div>'}).join(''),body;
+    var grad='background:linear-gradient(135deg,color-mix(in srgb,var('+o.c+') 55%,#000),#0b0d0c)',ph=MEDIA.photo[o.k]||[],
+    layers=ph.map(function(q){return '<div class="bg" style="--u:url('+q.u+')"></div>'}).join(''),body;
     if(o.s)body=stageHTML(o.s);else if(o.kind==='intro')body=introHTML();else if(o.kind==='sum')body=sumHTML(g);else body=closeHTML();
-    return '<section class="sc'+(o.pen?' draw':'')+(o.out?' out':'')+(o.kind==='intro'?' intro':'')+(o.kind==='end'?' end':'')+'">'+layers+(o.pen?pencil(o.pen):'')+'<div class="in"><div class="fit">'+body+'</div></div></section>'}).join('');
+    return '<section class="sc'+(o.out?' out':'')+(o.kind==='intro'?' intro':'')+(o.kind==='end'?' end':'')+'" style="'+grad+'"><div class="media'+(o.out?' lite':' paper')+'">'+pencil(o.pen)+layers+'</div><div class="in"><div class="fit">'+body+'</div></div></section>'}).join('');
   $('segs').innerHTML=sc.map(function(){return '<i><b></b></i>'}).join('');
   [].forEach.call($('segs').children,function(e,j){e.onclick=function(){P.gest=true;hideGate();go(j)}});
 }
@@ -436,27 +476,26 @@ var RECHK=0;
 function layout(){
   fitScene();
   if(!RECHK){RECHK=1;[80,500].forEach(function(ms){setTimeout(function(){if(!P.on)return;var c=$('scs').children[P.i],b4=c&&c.className;fitScene();RECHK=0;if(c&&c.className!==b4){RECHK=1;layout();RECHK=0}},ms)})}
-  var cur=$('scs').children[P.i],txt=TRP[P.i]||'',A=P.A,all=[].slice.call(cur.querySelectorAll('.rv,.bt'));
-  function tm(kw){if(!kw)return null;var ix=txt.indexOf(kw);if(ix<0)return null;return Math.max(0,Math.round(ix/txt.length*A-350))}
-  var btT=0,kb=0,kh=0;
+  var i=P.i,T=TR[P.tr],cur=$('scs').children[i],txt=TRP[i]||'',L=P.len[i],W=wt(txt)||1,all=[].slice.call(cur.querySelectorAll('.rv,.bt'));
+  P.dur=L+(i===T.s[T.s.length-1]?P.pad:0);
+  function tm(kw){if(!kw)return null;var ix=txt.indexOf(kw);if(ix<0)return null;return Math.max(0,Math.round(wt(txt,ix)/W*L-400))}
+  var btT=0,kb=0,kh=0,cap=Math.max(0,L-800);
   P.rev=all.map(function(el){
     var kw=el.getAttribute('data-kw'),f=el.getAttribute('data-f'),at;
-    if(el.classList.contains('bt')){at=kw===''?0:tm(kw);if(at===null)at=btT+3000;btT=at;kb=0;return{el:el,at:at}}
+    if(el.classList.contains('bt')){at=kw===''?0:tm(kw);if(at===null)at=btT+4000;at=Math.min(at,cap);btT=at;kb=0;return{el:el,at:at}}
     at=tm(kw);
-    if(at===null){if(f!==null)at=Math.round(+f*A);else if(el.closest('.bt'))at=btT+250+(kb++)*320;else at=250+(kh++)*350}
-    if(el.dataset&&el.classList.contains('tot'))el.dataset.at=at;
+    if(at===null){if(f!==null)at=Math.round(+f*L);else if(el.closest('.bt'))at=btT+500+(kb++)*700;else at=500+(kh++)*600}
+    at=Math.min(at,cap);if(el.classList.contains('tot'))el.dataset.at=at;
     return{el:el,at:at}});
-  var tt=P.rev.filter(function(r){return r.el.tagName==='LI'}).map(function(r){return r.at}),ls=cur.querySelectorAll('.bg'),old=P.ph||[];
-  function at(x){if(x<0||!tt.length)return 0;var a=Math.min(Math.floor(x),tt.length-1);return tt[a]+(x-a)*((a+1<tt.length?tt[a+1]:P.dur)-tt[a])}
-  P.ph=(MEDIA.photo[P.i]||[{i:-1}]).map(function(q,j){return{el:ls[j],at:at(q.i===undefined?-1:q.i),on:old[j]?old[j].on:false}});
-  var mn=Math.min.apply(null,P.ph.map(function(q){return q.at}));P.ph.forEach(function(q){if(q.at===mn&&mn>0)q.at=0});
+  var tt=P.rev.filter(function(r){return r.el.tagName==='LI'}).map(function(r){return r.at}),ls=cur.querySelectorAll('.bg'),old=P.ph||[],ph=MEDIA.photo[i]||[],prev=0;
+  function at(x){if(x<0||!tt.length)return 0;var a=Math.min(Math.floor(x),tt.length-1);return tt[a]+(x-a)*((a+1<tt.length?tt[a+1]:L)-tt[a])}
+  P.ph=ph.map(function(q,j){var a=j?Math.max(prev+3500,q.i>=0?at(q.i):0):Math.min(10800,Math.round(L*.6));a=Math.min(a,Math.round(L*.88));prev=a;return{el:ls[j],at:a,on:old[j]?old[j].on:false}});
   [].forEach.call(ls,function(b){b.style.setProperty('--d',P.dur+'ms')});
 }
 function fitScene(){
   var cur=$('scs').children[P.i];if(!cur)return;var fit=cur.querySelector('.fit'),box=cur.querySelector('.in'),ul=cur.querySelector('ul');if(!fit||!box)return;
   var ctl=cine.querySelector('.ctl'),vh=cine.clientHeight||window.innerHeight;
-  box.style.bottom=Math.round(vh-ctl.getBoundingClientRect().top+6)+'px';box.style.top='';
-  if(cur.classList.contains('draw')&&window.matchMedia('(max-width:700px)').matches){var pn=cur.querySelector('.pen');if(pn){var pb=pn.getBoundingClientRect().bottom;box.style.top=Math.round(pb-pn.getBoundingClientRect().height*(cur.classList.contains('out')?.55:.12))+'px'}}
+  cine.style.setProperty('--ctl',Math.round(vh-ctl.getBoundingClientRect().top+4)+'px');
   ['cmp','nd','nw','car','xs'].forEach(function(c){cur.classList.remove(c)});
   var dots=fit.querySelector('.dots');if(dots)dots.remove();
   if(ul){ul.style.height='';[].forEach.call(ul.children,function(li){li.classList.remove('gone')})}
@@ -490,37 +529,46 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(
 var gate=cine.querySelector('#gate');
 function showGate(){gate.classList.add('on');cine.classList.add('paused')}
 function hideGate(){gate.classList.remove('on')}
-function playVo(){var r=vo.play();if(r&&r.catch)r.catch(function(){if(!P.gest&&P.on){P.playing=false;showGate();upd()}});return r}
-function go(i){
-  i=Math.max(0,Math.min(sc.length-1,i));P.i=i;P.t=0;P.wait=0;
-  var els=$('scs').children;
-  [].forEach.call(els,function(e,j){e.classList.toggle('on',j===i);if(j===i){[].forEach.call(e.querySelectorAll('.rv,.bt'),function(r){r.classList.remove('show','gone')});[].forEach.call(e.querySelectorAll('.bg'),function(b){b.classList.remove('on','kb')})}});
-  [].forEach.call($('segs').children,function(e,j){e.firstChild.style.width=j<i?'100%':'0'});
-  var src=MEDIA.au[i];P.av=!!src;
-  P.A=src&&MEDIA.dur[i]?MEDIA.dur[i]*1000:Math.max(9000,(TRP[i]||'').length*85);
-  P.dur=P.A+(i===sc.length-1?2500:800);P.ph=[];layout();photos(0);
-  vo.pause();
-  if(src){vo.src=src;vo.onloadedmetadata=function(){if(isFinite(vo.duration)){MEDIA.dur[i]=vo.duration;P.A=vo.duration*1000;P.dur=P.A+(i===sc.length-1?2500:800);layout()}};vo.onerror=function(){P.av=false};
-    try{vo.currentTime=0}catch(e){}
-    if(P.playing)playVo();
-    var nx=MEDIA.au[i+1];if(nx&&!MEDIA._pre){MEDIA._pre=1;var pa=new Audio();pa.preload='auto';pa.src=nx;setTimeout(function(){MEDIA._pre=0},4000)}
-  }else{vo.removeAttribute('src')}
+function playVo(){if(P.av&&P.c>=P.D.length)return;var r=vo.play();if(r&&r.catch)r.catch(function(){if(!P.gest&&P.on){P.playing=false;showGate();upd()}});return r}
+function clipDone(){if(!P.av)return;if(P.c<P.D.length-1){P.c++;P.g=Math.max(P.g,P.base[P.c]);startClip(0)}else{P.c=P.D.length;P.g=Math.max(P.g,P.A)}}
+function startClip(seek){
+  var T=TR[P.tr],k=T.k[P.c],u=MEDIA.au[k],nx=T.k[P.c+1],nu=MEDIA.au[nx!==undefined?nx:(TR[P.tr+1]||{k:[]}).k[0]];
+  if(!u){P.av=false;vo.removeAttribute('src');return}
+  vo.onloadedmetadata=function(){if(isFinite(vo.duration)&&Math.abs((MEDIA.dur[k]||0)-vo.duration)>.05){MEDIA.dur[k]=vo.duration;replan()}if(seek>0){try{vo.currentTime=seek/1000}catch(e){}}};
+  vo.onended=clipDone;vo.onerror=function(){P.av=false};
+  vo.src=u;if(nu){P.pre=new Audio();P.pre.preload='auto';P.pre.src=nu}
+  if(P.playing)playVo();
 }
-function photos(t){P.ph.forEach(function(q){if(q.el&&!q.on&&t>=q.at){q.on=true;q.el.classList.add('on');q.el.classList.remove('kb');void q.el.offsetWidth;q.el.classList.add('kb')}})}
+function go(i,keep){
+  i=Math.max(0,Math.min(sc.length-1,i));var j=trOf(i);
+  P.i=i;P.wait=0;
+  if(!(keep&&P.tr===j&&P.off)){
+    vo.pause();plan(j);P.g=P.off[i];P.c=0;
+    if(P.av)for(var x=0;x<P.base.length;x++)if(P.g>=P.base[x]-1)P.c=x;
+    TR[j].k.forEach(meta);(TR[j+1]||{k:[]}).k.forEach(meta);
+    if(P.av)startClip(P.g-P.base[P.c]);else vo.removeAttribute('src');
+  }
+  [].forEach.call($('scs').children,function(e,jj){e.classList.toggle('on',jj===i);if(jj===i){[].forEach.call(e.querySelectorAll('.rv,.bt'),function(r){r.classList.remove('show','gone')});[].forEach.call(e.querySelectorAll('.bg'),function(b){b.classList.remove('on','kb')});e.querySelector('.media').classList.remove('ph')}});
+  [].forEach.call($('segs').children,function(e,jj){e.firstChild.style.width=jj<i?'100%':'0'});
+  P.ph=[];P.t=Math.max(0,P.g-P.off[i]);layout();photos(P.t);
+}
+function photos(t){var m=$('scs').children[P.i].querySelector('.media');P.ph.forEach(function(q){if(q.el&&!q.on&&t>=q.at){q.on=true;q.el.classList.add('on');q.el.classList.remove('kb');void q.el.offsetWidth;q.el.classList.add('kb');m.classList.add('ph')}})}
 function tick(){
-  var cur=$('scs').children[P.i];
-  $('segs').children[P.i].firstChild.style.width=Math.min(100,P.t/P.dur*100)+'%';
+  var i=P.i,cur=$('scs').children[i],T=TR[P.tr],lastS=T.s[T.s.length-1];
+  P.t=Math.max(0,P.g-P.off[i]);
+  $('segs').children[i].firstChild.style.width=Math.min(100,P.t/P.dur*100)+'%';
   P.rev.forEach(function(r){if(P.t>=r.at)r.el.classList.add('show')});seqStep();photos(P.t);
-  [].forEach.call(cur.querySelectorAll('[data-cnt]'),function(c){var e=Math.min(1,Math.max(0,(P.t-(+c.dataset.at||0))/1600));c.firstChild.textContent=fmt(Math.round(+c.dataset.cnt*(1-Math.pow(1-e,3))))});
-  if(P.t>=P.dur){if(P.i<sc.length-1)go(P.i+1);else{P.playing=false;P.ended=true;vo.pause();upd()}}
+  [].forEach.call(cur.querySelectorAll('[data-cnt]'),function(c){var e=Math.min(1,Math.max(0,(P.t-(+c.dataset.at||0))/2200));c.firstChild.textContent=fmt(Math.round(+c.dataset.cnt*(1-Math.pow(1-e,3))))});
+  if(i<lastS){if(P.g>=P.off[i]+P.len[i])go(i+1,true)}
+  else if(P.g>=P.end){if(i<sc.length-1)go(i+1);else{P.playing=false;P.ended=true;vo.pause();upd()}}
 }
 function loop(ts){
   if(!P.on)return;var dt=Math.min(100,ts-(P.last||ts));P.last=ts;
   if(P.playing){
-    if(P.av&&!vo.ended){
-      if(!vo.paused&&vo.currentTime>0){P.t=vo.currentTime*1000;P.wait=0}
-      else{P.wait+=dt;if(P.wait>3500){P.av=false}}
-    }else{P.t+=dt}
+    if(P.av&&P.c<P.D.length){
+      if(!vo.paused&&!vo.ended&&vo.currentTime>0){P.g=P.base[P.c]+vo.currentTime*1000;P.wait=0}
+      else{P.wait+=dt;if(P.wait>4000)P.av=false}
+    }else P.g+=dt;
     tick();
   }
   requestAnimationFrame(loop)
