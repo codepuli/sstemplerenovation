@@ -257,10 +257,14 @@ footer{padding:32px 0 48px;color:var(--mute);font-size:13px}
 .sc .media.lite{border-color:transparent;box-shadow:none}
 .media .pen{position:absolute;inset:0;transition:opacity 1.4s ease}
 .media .pen svg{width:100%;height:100%;display:block}
-.media.ph .pen{opacity:0}
-.sc .media .bg{position:absolute;inset:0;isolation:isolate;background:var(--u) center/contain no-repeat;opacity:0;transition:opacity 1.6s ease}
+.media.ph .pen{inset:auto 12px 12px auto;width:30%;height:auto;aspect-ratio:520/440;z-index:3;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.5);animation:pop 1s ease .9s both}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.ded{margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,.2);font-size:clamp(12px,min(3.2vw,2.3vh),16px);letter-spacing:.02em;color:rgba(255,255,255,.62)}
+.sc .media .bg{position:absolute;inset:0;background:none;opacity:0;transition:opacity 1.6s ease}
+.sc .media .bg::before,.sc .media .bg::after{content:"";position:absolute;inset:0;background:var(--u) center/cover no-repeat}
+.sc .media .bg::after{background-size:contain}
 .sc .media .bg.on{opacity:1}
-.sc .media .bg::before{content:"";position:absolute;inset:-12%;z-index:-1;background:var(--u) center/cover;filter:blur(22px) brightness(.5)}
+.sc .media .bg::before{inset:-12%;filter:blur(22px) brightness(.5)}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
 .sc .in{left:max(5vw,18px);right:max(5vw,18px);width:auto;max-width:none;top:calc(max(2.5vh,16px) + min(34vh,80vw) + 16px + env(safe-area-inset-top,0px));bottom:calc(var(--ctl) + 8px);gap:16px;justify-content:center;overflow:hidden}
 .sc.intro .in,.sc.end .in{max-width:none}
@@ -402,7 +406,7 @@ cine.innerHTML='<svg width="0" height="0" style="position:absolute" aria-hidden=
 document.body.appendChild(cine);
 var sc=[],P={on:false,i:0,t:0,dur:8000,base:8000,playing:true,last:0,rev:[],idle:0,A:8000,av:false,wait:0,gest:false},vo=$('vo');
 
-var SLOT={chira:[1,-1],pathway:[2,-1],interlock:[2,-1],nadapanthal:[2,1],'temple-inside-1':[4,-1],'temple-inside-2':[4,1],'ground-stage':[5,-1],'ground-stage-1':[5,.5],'padinjare-nada':[5,1],intro:[0,-1],outro:[7,-1],1:[1,-1],2:[2,-1],3:[3,-1],4:[4,-1],5:[5,-1]};
+var SLOT={'nadapantha':[2,1],'parinjare-nada':[5,1],'temple-inside':[4,-1],chira:[1,-1],pathway:[2,-1],interlock:[2,-1],nadapanthal:[2,1],'temple-inside-1':[4,-1],'temple-inside-2':[4,1],'ground-stage':[5,-1],'ground-stage-1':[5,.5],'padinjare-nada':[5,1],intro:[0,-1],outro:[7,-1],1:[1,-1],2:[2,-1],3:[3,-1],4:[4,-1],5:[5,-1]};
 function addPhoto(n,u){var q=SLOT[n];if(!q)return false;var a=MEDIA.photo[q[0]]=(MEDIA.photo[q[0]]||[]).filter(function(x){return x.n!==n});a.push({n:n,u:u,i:q[1]});a.sort(function(x,y){return x.i-y.i});return true}
 var UL='<svg class="ul rv" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 8C60 2 120 11 180 5S270 7 298 4"/></svg>';
 function tot(v,kw){return '<div class="tot rv" data-cnt="'+v+'"'+(kw?' data-kw="'+kw+'"':'')+'><span class="n"></span><svg class="circ" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M20 50C14 14 120 6 200 8S292 30 286 60 200 94 120 92 8 78 22 40"/></svg></div>'}
@@ -461,13 +465,15 @@ function plan(j){
 }
 function replan(){if(!P.on)return;var g=P.g;plan(P.tr);P.g=g;layout()}
 function meta(k){if(!MEDIA.au[k]||MEDIA.dur[k])return;var a=new Audio();a.preload='metadata';a.onloadedmetadata=function(){if(isFinite(a.duration)){MEDIA.dur[k]=a.duration;replan()}};a.src=MEDIA.au[k]}
+function lateRebuild(){clearTimeout(P.lr);P.lr=setTimeout(function(){if(P.on){var i=P.i;build();go(i,true)}},400)}
+var DED='<div class="ded rv" data-f=".9">പെരുമാളിന്\u200c നിഖിൽ നാരായണൻ സമർപ്പിക്കുന്ന വീഡിയോ</div>';
 function build(){
   var g=grand();
   sc=[{k:0,c:'--c3',pen:'temple',kind:'intro'}].concat(S.map(function(s){return{k:s.n,c:s.c,s:s,pen:s.n===1?'pond':s.n===2?'path':s.n===3?'full':s.n===4?'inside':'peepal'}}),[{k:6,c:'--c3',out:true,pen:'lightpath',kind:'sum'},{k:7,c:'--c3',pen:'temple',kind:'end'}]);
   $('scs').innerHTML=sc.map(function(o){
     var grad='background:linear-gradient(135deg,color-mix(in srgb,var('+o.c+') 55%,#000),#0b0d0c)',ph=MEDIA.photo[o.k]||[],
     layers=ph.map(function(q){return '<div class="bg" style="--u:url('+q.u+')"></div>'}).join(''),body;
-    if(o.s)body=stageHTML(o.s);else if(o.kind==='intro')body=introHTML();else if(o.kind==='sum')body=sumHTML(g);else body=closeHTML();
+    if(o.s)body=stageHTML(o.s);else if(o.kind==='intro')body=introHTML();else if(o.kind==='sum')body=sumHTML(g);else body=closeHTML()+(o.kind==='end'?DED:'');
     return '<section class="sc'+(o.out?' out':'')+(o.kind==='intro'?' intro':'')+(o.kind==='end'?' end':'')+'" style="'+grad+'"><div class="media'+(o.out?' lite':' paper')+'">'+pencil(o.pen)+layers+'</div><div class="in"><div class="fit">'+body+'</div></div></section>'}).join('');
   $('segs').innerHTML=sc.map(function(){return '<i><b></b></i>'}).join('');
   [].forEach.call($('segs').children,function(e,j){e.onclick=function(){P.gest=true;hideGate();go(j)}});
@@ -489,7 +495,7 @@ function layout(){
     return{el:el,at:at}});
   var tt=P.rev.filter(function(r){return r.el.tagName==='LI'}).map(function(r){return r.at}),ls=cur.querySelectorAll('.bg'),old=P.ph||[],ph=MEDIA.photo[i]||[],prev=0;
   function at(x){if(x<0||!tt.length)return 0;var a=Math.min(Math.floor(x),tt.length-1);return tt[a]+(x-a)*((a+1<tt.length?tt[a+1]:L)-tt[a])}
-  P.ph=ph.map(function(q,j){var a=j?Math.max(prev+3500,q.i>=0?at(q.i):0):Math.min(10800,Math.round(L*.6));a=Math.min(a,Math.round(L*.88));prev=a;return{el:ls[j],at:a,on:old[j]?old[j].on:false}});
+  P.ph=ph.map(function(q,j){var a=j?Math.max(prev+3500,q.i>=0?at(q.i):0):Math.min(9000,Math.round(L*.5));a=Math.min(a,Math.round(L*.88));prev=a;return{el:ls[j],at:a,on:old[j]?old[j].on:false}});
   [].forEach.call(ls,function(b){b.style.setProperty('--d',P.dur+'ms')});
 }
 function fitScene(){
@@ -601,8 +607,8 @@ var START=(function(){
   function begin(){if(started)return;started=true;if(!P.on&&location.hash!=='#edit')openCine()}
   function fin(){if(--pend<=0)setTimeout(begin,50)}
   Object.keys(SLOT).forEach(function(n){EX.forEach(function(x){pend++;var im=new Image(),u=B+n+'.'+x;
-    im.onload=function(){if(!done[n]){done[n]=1;addPhoto(n,u)}fin()};im.onerror=fin;im.src=u})});
-  for(var k=0;k<8;k++)(function(k){pend++;var a=new Audio(),u=AUB+k+'.mp3';a.preload='metadata';
+    im.onload=function(){if(!done[n]){done[n]=1;addPhoto(n,u);if(P.on)lateRebuild()}fin()};im.onerror=fin;im.src=u})});
+  for(var k=0;k<8;k++)(function(k){pend++;var a=new Audio(),u=AUB+k+'.mp3?v=3';a.preload='metadata';
     a.onloadedmetadata=function(){if(isFinite(a.duration)){MEDIA.au[k]=u;MEDIA.dur[k]=a.duration}fin()};a.onerror=fin;a.src=u})(k);
   setTimeout(begin,3500);
   return begin;
